@@ -1,0 +1,116 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 30px 0px;
+  max-width: 100%;
+}
+
+header {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}
+
+section {
+  margin: 65px 0 0 0;
+}
+
+h1 {
+  color: blue;
+}
+
+h2 {
+  color: blue;
+  margin-left: 30px;
+}
+
+h2:hover {
+  color: brown;
+}
+
+sup {
+  font-size: 75px;
+}
+
+hr {
+  color: blue;
+  margin: 20px 30px;
+  border-width: 7px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.enter-city {
+  border-color: blue;
+  border-width: 2px;
+}
+
+.enter-city:hover {
+  border: inset;
+}
+
+.icon-left {
+  text-transform: capitalize;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-left:hover {
+  font-size: 50px;
+  margin-top: -30px;
+}
+
+.units {
+  font-size: 25px;
+}
+
+.feels {
+  margin-top: 20px;
+  font-size: 20px;
+  color: dimgray;
+}
+
+.feels:hover {
+  color: blue;
+}
+
+.days {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.card {
+  text-align: center;
+  font-size: 34px;
+  border-color: blue;
+  border-width: 2px;
+}
+
+.card-body {
+  height: 200px;
+  font-size: 38px;
+  padding-top: 20px;
+}
+#city {
+  margin-top: 70px;
+  font-size: 70px;
+  font-weight: bold;
+}
+
+#temperature {
+  font-size: 100px;
+  font-weight: bold;
+}
+
+#date {
+  margin-top: 85px;
+}
+
+#btn-location {
+  margin-left: 205px;
+}
