@@ -113,7 +113,10 @@ function showTemperature(event) {
   let wind = document.querySelector("#wind");
   wind.innerHTML = Math.round(event.data.wind.speed);
 
-  let weatherIcon = document.querySelector("#weather-icon");
+  let iconLeft = event.data.weather[0].icon;
+  document.getElementById("weather-icon").src=`http://openweathermap.org/img/wn/${iconLeft}@2x.png`;
+  
+  let weatherIcon = document.querySelector("#weather-text");
   weatherIcon.innerHTML = event.data.weather[0].description;
 }
 
