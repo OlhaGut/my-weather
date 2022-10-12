@@ -133,17 +133,21 @@ function unitValue(newUnitTemperature) {
 
 function changeUnitToFahrenheit() {
   unitValue("℉");
-  temperatureValue(fahrenheit)
+  temperatureValue(fahrenheit);
+  unitTemperatureC.classList.remove("active");
+  unitTemperatureF.classList.add("active");
 }
-let unitTemperatureC = document.querySelector("#fahrenheit-link");
-unitTemperatureC.addEventListener("click", changeUnitToFahrenheit);
+let unitTemperatureF = document.querySelector("#fahrenheit-link");
+unitTemperatureF.addEventListener("click", changeUnitToFahrenheit);
 
 function changeUnitToCelsius() {
   unitValue("℃");
   temperatureValue(celsius);
+  unitTemperatureC.classList.add("active");
+  unitTemperatureF.classList.remove("active");
 }
-let unitTemperatureF = document.querySelector("#celsius-link");
-unitTemperatureF.addEventListener("click", changeUnitToCelsius);
+let unitTemperatureC = document.querySelector("#celsius-link");
+unitTemperatureC.addEventListener("click", changeUnitToCelsius);
 
 // Geolocation------------------------------------------
 function showPosition(position) {

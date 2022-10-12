@@ -129,3 +129,7 @@ footer {
   text-decoration: none;
   cursor: default;
 }
+
+.active {
+  color: #000;
+}
