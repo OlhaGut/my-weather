@@ -63,12 +63,8 @@ function searchCity(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 
-  // let h1City = document.querySelector("#city");
   if (searchInput.value) {
-    // h1City.innerHTML = `${searchInput.value}`;
   } else {
-    // h1City.innerHTML = null;
-    // temperatureValue(null);
     alert("Please enter a city");
   }
 }
@@ -95,10 +91,14 @@ startPage()
 getCurrentPosition()
 
 // Show value----------------------------------------
+let celsius = null;
+let fahrenheit = null;
+
 function showTemperature(event) {
-  let celsius = Math.round(event.data.main.temp);
-  let fahrenheit = Math.round(celsius * 1.8 + 32);
+  celsius = Math.round(event.data.main.temp);
+  fahrenheit = Math.round(celsius * 1.8 + 32);
   temperatureValue(celsius);
+  unitValue("℃");
   console.log(event.data);
 
   let h1City = document.querySelector("#city");
@@ -133,12 +133,14 @@ function unitValue(newUnitTemperature) {
 
 function changeUnitToFahrenheit() {
   unitValue("℉");
+  temperatureValue(fahrenheit)
 }
 let unitTemperatureC = document.querySelector("#fahrenheit-link");
 unitTemperatureC.addEventListener("click", changeUnitToFahrenheit);
 
 function changeUnitToCelsius() {
   unitValue("℃");
+  temperatureValue(celsius);
 }
 let unitTemperatureF = document.querySelector("#celsius-link");
 unitTemperatureF.addEventListener("click", changeUnitToCelsius);
@@ -149,7 +151,6 @@ function showPosition(position) {
   let lon = position.coords.longitude;
   let apiKey = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(showTemperature);
 }
 
