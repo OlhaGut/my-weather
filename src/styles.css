@@ -6,12 +6,14 @@ body {
 
 header {
   position: fixed;
-  top: 30px;
+  display: flex;
+  flex-direction: row;
+  top: 20px;
   right: 30px;
 }
 
 section {
-  margin: 65px 0 0 0;
+  margin: -10px 0 0 0;
 }
 
 h1 {
@@ -38,7 +40,7 @@ hr {
 }
 
 footer {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .enter-city {
@@ -73,7 +75,7 @@ footer {
   color: blue;
 }
 
-.days {
+.weather-forecast {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -88,8 +90,8 @@ footer {
 }
 
 .card-body {
-  height: 200px;
-  font-size: 38px;
+  height: 180px;
+  font-size: 16px;
   padding-top: 20px;
 }
 
@@ -118,11 +120,11 @@ footer {
 }
 
 #btn-location {
-  margin-left: 205px;
+  margin-left: 10px;
 }
 
 .link-code {
-  margin: 0 0 30px 100px;
+  margin: 0 0 5px 100px;
 }
 
 .link {
@@ -132,4 +134,17 @@ footer {
 
 .active {
   color: #000;
+}
+
+.weather-forecast-date {
+  opacity: 0.5;
+  margin-bottom: 0;
+}
+
+.weather-forecast-temperatures-min {
+  opacity: 0.5;
+}
+
+.weather-forecast-temperatures {
+  font-size: 16;
 }
