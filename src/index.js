@@ -53,6 +53,42 @@ h5Date.innerHTML = formatDates(new Date());
 let h3Time = document.querySelector("#time");
 h3Time.innerHTML = new Date().toLocaleTimeString().slice(0, -3);
 
+// FORECAST--------------------------------------
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  
+  let days = ["Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"];
+
+  let forecastHTML = `<div class="row weather-forecast">`;
+  days.forEach(function (day) {
+  forecastHTML = forecastHTML + `
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="weather-forecast-date">${day}</h5>
+          <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" id="weather-forecast-icon">
+          <p class="weather-forecast-temperatures">
+            <span class="weather-forecast-temperatures-max">30</span>
+            <span class="weather-forecast-temperatures-min">15</span>
+          </p>
+        </div>
+      </div>
+    </div>`;
+  })
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
+
 // FORM-------------------------------------------
 function searchCity(event) {
   event.preventDefault();
