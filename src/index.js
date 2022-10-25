@@ -54,7 +54,8 @@ let h3Time = document.querySelector("#time");
 h3Time.innerHTML = new Date().toLocaleTimeString().slice(0, -3);
 
 // FORECAST--------------------------------------
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   
   let days = ["Sunday",
@@ -87,7 +88,11 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
-displayForecast();
+function getForecast(coordinates) {
+let apiKeyForecast = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
+let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKeyForecast}&units=metric`;
+axios.get(apiUrlForecast).then(displayForecast);
+}
 
 // FORM-------------------------------------------
 function searchCity(event) {
@@ -135,7 +140,7 @@ function showTemperature(event) {
   fahrenheit = Math.round(celsius * 1.8 + 32);
   temperatureValue(celsius);
   unitValue("℃");
-  console.log(event.data);
+  // console.log(event.data);
 
   let h1City = document.querySelector("#city");
   h1City.innerHTML = event.data.name;
@@ -155,6 +160,8 @@ function showTemperature(event) {
 
   let weatherIcon = document.querySelector("#weather-text");
   weatherIcon.innerHTML = event.data.weather[0].description;
+
+  getForecast(event.data.coord)
 }
 
 function temperatureValue(newTemperature) {
