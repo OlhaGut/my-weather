@@ -97,10 +97,38 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
-function getForecast(coordinates) {
-let apiKeyForecast = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
-let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKeyForecast}&units=metric`;
-axios.get(apiUrlForecast).then(displayForecast);
+function forecastMetric() {
+  let city = document.getElementById("city").textContent;
+  let apiKeyForecast = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyForecast}&units=metric`;
+  axios.get(apiUrlForecast).then(showForecastMetric);
+}
+
+function showForecastMetric(event) {
+  getForecastMetric(event.data.coord);
+}
+
+function getForecastMetric(coordinates) {
+  let unit = "metric";
+  let apiKeyForecast = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKeyForecast}&units=${unit}`;
+  axios.get(apiUrlForecast).then(displayForecast);
+}
+
+function forecastImperial() {
+  let city = document.getElementById("city").textContent;
+  let apiKeyForecast = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyForecast}&units=metric`;
+  axios.get(apiUrlForecast).then(showForecastImperial);
+}
+function showForecastImperial(event) {
+  getForecastImperial(event.data.coord);
+}
+function getForecastImperial(coordinates) {
+  let unit = "imperial";
+  let apiKeyForecast = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKeyForecast}&units=${unit}`;
+  axios.get(apiUrlForecast).then(displayForecast);
 }
 
 // FORM-------------------------------------------
@@ -143,19 +171,22 @@ getCurrentPosition()
 // Show value----------------------------------------
 let celsius = null;
 let fahrenheit = null;
+let feelsLikeCelsius = null;
+let feelsLikeFahrenheit = null;
 
 function showTemperature(event) {
   celsius = Math.round(event.data.main.temp);
   fahrenheit = Math.round(celsius * 1.8 + 32);
+  feelsLikeCelsius = Math.round(event.data.main.feels_like);
+  feelsLikeFahrenheit = Math.round(feelsLikeCelsius * 1.8 + 32);
+  
   temperatureValue(celsius);
   unitValue("℃");
+  temperatureFeelsLike(feelsLikeCelsius);
   // console.log(event.data);
 
   let h1City = document.querySelector("#city");
   h1City.innerHTML = event.data.name;
-
-  let feelsLike = document.querySelector("#feels-like");
-  feelsLike.innerHTML = Math.round(event.data.main.feels_like);
 
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = Math.round(event.data.main.humidity);
@@ -170,7 +201,7 @@ function showTemperature(event) {
   let weatherIcon = document.querySelector("#weather-text");
   weatherIcon.innerHTML = event.data.weather[0].description;
 
-  getForecast(event.data.coord)
+  forecastMetric();
 }
 
 function temperatureValue(newTemperature) {
@@ -178,26 +209,39 @@ function temperatureValue(newTemperature) {
   temperature.innerHTML = newTemperature;
 }
 
+function temperatureFeelsLike(newTemp) {
+  let feelsLike = document.querySelector("#feels-like");
+  feelsLike.innerHTML = newTemp;
+}
+
 function unitValue(newUnitTemperature) {
   let unit = document.querySelector("#unit-temperature");
   unit.innerHTML = newUnitTemperature;
+  let unitFeels = document.querySelector("#unit-temperature-feels");
+  unitFeels.innerHTML = newUnitTemperature;
 }
 
 function changeUnitToFahrenheit() {
   unitValue("℉");
   temperatureValue(fahrenheit);
+  temperatureFeelsLike(feelsLikeFahrenheit);
   unitTemperatureC.classList.remove("active");
   unitTemperatureF.classList.add("active");
+  forecastImperial();
 }
+
 let unitTemperatureF = document.querySelector("#fahrenheit-link");
 unitTemperatureF.addEventListener("click", changeUnitToFahrenheit);
 
 function changeUnitToCelsius() {
   unitValue("℃");
   temperatureValue(celsius);
+  temperatureFeelsLike(feelsLikeCelsius);
   unitTemperatureC.classList.add("active");
   unitTemperatureF.classList.remove("active");
+  forecastMetric()
 }
+
 let unitTemperatureC = document.querySelector("#celsius-link");
 unitTemperatureC.addEventListener("click", changeUnitToCelsius);
 
