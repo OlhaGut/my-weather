@@ -29,28 +29,28 @@
 
   <body>
     <div class="language">
-      <button class="btn btn-primary mb-3" id="lang-ukr" onclick="window.location.href = 'indexukr.html';">UKR</button>
+      <button class="btn btn-primary mb-3" id="lang-eng" onclick="window.location.href = 'index.html';">ENG</button>
     </div>
     <header>
       <form class="row g-3" id="form-search-city">
         <div class="col-auto">
-          <label for="inputCity" class="visually-hidden">SEARCH</label>
+          <label for="inputCity" class="visually-hidden">ПОШУК</label>
           <input
             type="search"
             class="form-control enter-city"
             id="inputCity"
-            placeholder="Enter a city"
+            placeholder="Введіть місто"
             autocomplete="off"
           />
         </div>
         <div class="col-auto">
           <button type="submit" class="btn btn-primary mb-3">
-            SEARCH
+            ПОШУК
           </button>
         </div>
       </form>
       <button class="btn btn-primary mb-3" id="btn-location">
-        My location
+        Моя локація
       </button>
     </header>
 
@@ -78,9 +78,9 @@
             <br />
             <h3 id="time">Time</h3>
             <div class="feels">
-              <p>Feels like: <span id="feels-like"></span><span id="unit-temperature-feels">℃</span></p>
-              <p>Humidity: <span id="humidity"></span>%</p>
-              <p>Wind: <span id="wind"></span> meter/sec</p>
+              <p>Відчувається як: <span id="feels-like"></span><span id="unit-temperature-feels">℃</span></p>
+              <p>Вологість: <span id="humidity"></span>%</p>
+              <p>Швидкіть вітру: <span id="wind"></span> м/с</p>
             </div>
           </div>
         </div>
@@ -97,6 +97,6 @@
       <a href="https://github.com/OlhaGut/my-weather" target="_blank" class="link">Open-source code</a>
     </div>
     
-    <script src="src/index.js"></script>
+    <script src="src/indexukr.js"></script>
   </body>
 </html>

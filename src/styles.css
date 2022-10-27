@@ -148,3 +148,9 @@ footer {
 .weather-forecast-temperatures {
   font-size: 16;
 }
+
+.language {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+}
