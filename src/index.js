@@ -181,7 +181,6 @@ function showTemperature(event) {
   feelsLikeFahrenheit = Math.round(feelsLikeCelsius * 1.8 + 32);
   
   temperatureValue(celsius);
-  unitValue("℃");
   temperatureFeelsLike(feelsLikeCelsius);
   // console.log(event.data);
 
@@ -202,6 +201,18 @@ function showTemperature(event) {
   weatherIcon.innerHTML = event.data.weather[0].description;
 
   forecastMetric();
+
+  if (unitNow() === "℃")
+  {
+    changeUnitToCelsius()
+  } else {
+    changeUnitToFahrenheit();
+  }
+}
+
+function unitNow() {
+  let unit = document.querySelector("#unit-temperature").textContent;
+  return unit;
 }
 
 function temperatureValue(newTemperature) {
@@ -239,7 +250,7 @@ function changeUnitToCelsius() {
   temperatureFeelsLike(feelsLikeCelsius);
   unitTemperatureC.classList.add("active");
   unitTemperatureF.classList.remove("active");
-  forecastMetric()
+  forecastMetric();
 }
 
 let unitTemperatureC = document.querySelector("#celsius-link");
